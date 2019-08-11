@@ -1,0 +1,53 @@
+.h3, .h5 {
+    position: center;
+    margin-top: 5px;
+}
+
+#header {
+    position: center;
+}
+
+.body, .main {
+    background: whitesmoke;
+    position: center;
+}
+
+#maindiv, #graph, #objectsList {
+    background: white;
+    position: center;
+}
+
+#requestForm {
+    margin-bottom: 10px ;
+    margin-top: 10px ;
+    background: white;
+}
+
+#objectsList {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    height: 300px;
+    overflow: auto;
+}
+
+.footer {
+    padding: 2rem 0;
+    background-color: #263238;
+    margin-top: 3rem;
+    color: white;
+    position: center;
+}
+
+#graphDiv {
+    height: 600px;
+    width: 960px;
+}
+
+#messageContainer {
+    background-color: #263238;
+    color: whitesmoke;
+}
+
+.form {
+    margin-top: 10px;
+}

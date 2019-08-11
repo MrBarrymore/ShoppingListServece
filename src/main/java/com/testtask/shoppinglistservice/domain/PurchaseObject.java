@@ -1,17 +1,33 @@
 package com.testtask.shoppinglistservice.domain;
 
-import org.springframework.stereotype.Component;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.sql.Date;
+import java.util.Calendar;
 
 
-@Component
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class PurchaseObject {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Category category;
+    private String category;
     private Date purchaseDate;
 
-
+    public PurchaseObject(String name, String category) {
+        this.name = name;
+        this.category = category;
+        this.purchaseDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+    }
 }
