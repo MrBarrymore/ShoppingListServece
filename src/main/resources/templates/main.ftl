@@ -8,14 +8,14 @@
             <div class="form-group col-md-6">
             <form method="get" action="/main" class="form-inline">
                 <input type="text" name="filter" value="${filter?ifExists}" placeholder="Поиск по категории">
-                <button type="submit" class="btn btn-primary ml-2">Search</button>
+                <button type="submit" class="btn btn-primary ml-2">Найти</button>
             </form>
             </div>
         </div>
 
         <div class="container ml-2">
             <a class="btn btn-primary" data-toggle="collapse" href="#collapseAddPurchase" role="button" aria-expanded="false" aria-controls="collapseAddPurchase">
-                Add new Message
+                Добавить новую покупку
             </a>
             <div class="collapse" id="collapseAddPurchase">
                 <div class="form-group mt-3">
@@ -33,6 +33,7 @@
                     </form>
                 </div>
             </div>
+
         </div>
 
         <h3>Список покупок:</h3>
