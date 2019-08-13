@@ -26,6 +26,17 @@
                         <div class="form-group">
                             <input type="text" class="form-control" name="cat" placeholder="Выберете категорию товара">
                         </div>
+                        <div class="form-group">
+                            <input type="description" class="form-control" name="description" placeholder="Опишите покупку">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="cost" placeholder="Стоимость">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="date" placeholder="Дата покупки">
+                        </div>
+
                         <input type="hidden" name="_csrf" value="${_csrf.token}" />
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Добавить</button>
@@ -36,21 +47,85 @@
 
         </div>
 
+        <link rel="stylesheet" type="text/css" href="/static/css/table.css">
+
         <h3>Список покупок:</h3>
-        <div class="card-columns ml-2">
+
+        <table class="table table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Наименование</th>
+                <th scope="col">Дополнительно</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Действие</th>
+            </tr>
+            </thead>
              <#list purchases as purchase>
-                  <div class="card bg-light mb-3 bg-secondary mb-3" style="max-width: 18rem;">
-                      <div class="card-header"><i>${purchase.name}</i></div>
-                      <div class="card-header">
-                          <h5 class="card-title"><i>${purchase.category}</i></h5>
-                          <p class="card-text"></p>
-                      </div>
-                      <div class="card-footer bg-transparent"> <i>${purchase.purchaseDate}</i> <strong>${purchase.authorName}</strong></div>
-                  </div>
+            <tbody>
+                <tr class="order-head">
+                    <td class="purchase-info" colspan="2" scope="col">
+                        <p class="first-row">
+                            <span class="info-subtitle">Id покупки:</span> <span class="info-body">${purchase.id}</span>
+                        </p>
+                        <p class="second-row" >
+                            <span class="info-subtitle"><i>${purchase.purchaseDate}</i></span>
+                        </p>
+                    </td>
+                    <td class="extra-purchase-info" colspan="1" scope="col">
+                        <p class="first-row">
+                            <span class="info-subtitle"></span>
+                        </p>
+                        <p class="second-row">
+                            <span class="info-subtitle"></span>
+                        </p>
+                    </td>
+                    <td class="" scope="col">
+                        <p class="first-row" colspan="1">
+                            <span class="info-subtitle">Стоимость:</span>
+                        </p>
+                        <p class="second-row">
+                            <span class="info-subtitle">${purchase.cost}</span>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr class="purchase-order">
+                    <td class="product-sets" colspan="1" scope="col">
+                        <div class="product-left">
+
+                        </div>
+                        <div class="product-right">
+                             <span class="info-subtitle">Категория:</span>
+                            <p class="purchase-category">${purchase.category}</p>
+
+                        </div>
+                    </td>
+
+                    <td class="purchase-action" rowspan="1" scope="col">
+                        <p class="purchase-description">${purchase.description}</p>
+                    </td>
+                    <td class="purchase-status" rowspan="1" scope="col">
+                        <span>Не куплено</span>
+                    </td>
+                    <td class="purchase-actions" rowspan="1" scope="col">
+                        <button type="button" class="btn btn-secondary">Подтвердить покупку</button>
+                        <button type="button" class="btn btn-secondary">Редактировать</button>
+                    </td>
+                </tr>
+
+
+            </tbody>
              <#else>
                  No purchases
              </#list>
-        </div>
+        </table>
+
+        <ul class="list-group">
+        </ul>
 
     </main>
+
+
+
 </@c.page>
+

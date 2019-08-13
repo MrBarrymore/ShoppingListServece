@@ -20,6 +20,9 @@ public class PurchaseObject {
     private Long id;
     private String name;
     private String category;
+    private String description;
+    private String cost;
+    private boolean isBought;
     private Date purchaseDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -30,16 +33,22 @@ public class PurchaseObject {
         return author != null ? author.getUsername() : "none";
     }
 
-    public PurchaseObject(String name, String category) {
-        this.name = name;
-        this.category = category;
-        this.purchaseDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-    }
 
     public PurchaseObject(String name, String category, User user) {
         this.author = user;
         this.name = name;
         this.category = category;
         this.purchaseDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+    }
+
+
+    public PurchaseObject(String name, String category, String description, String cost,  User author) {
+        this.name = name;
+        this.category = category;
+        this.description = description;
+        this.cost = cost;
+        this.isBought = false;
+        this.purchaseDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        this.author = author;
     }
 }

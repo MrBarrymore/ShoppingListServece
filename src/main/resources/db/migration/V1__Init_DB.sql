@@ -2,9 +2,12 @@ create sequence hibernate_sequence start 1 increment 1;
 
 create table purchase_object (
     id int8 not null,
+    name varchar(255) not null,
     category varchar(255) not null,
-    name varchar(2048),
+    description varchar(2048),
+    cost varchar(255),
     purchase_date date,
+    is_bought bool,
     user_id int8,
     primary key (id)
 );

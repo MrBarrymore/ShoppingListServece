@@ -46,9 +46,13 @@ public class MainController {
     public String add(
             @AuthenticationPrincipal User user,
             @RequestParam String text,
-            @RequestParam String cat, Model model)
+            @RequestParam String cat,
+            @RequestParam String description,
+            @RequestParam String cost,
+            Model model)
     {
-        PurchaseObject purchase = new PurchaseObject(text, cat, user);
+        PurchaseObject purchase = new PurchaseObject(text, cat, description, cost, user);
+
 
         purchaseRepository.save(purchase);
 
