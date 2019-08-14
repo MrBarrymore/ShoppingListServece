@@ -7,12 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.Map;
-
 
 @Controller
 public class MainController {
@@ -45,21 +46,30 @@ public class MainController {
     @PostMapping("/main")
     public String add(
             @AuthenticationPrincipal User user,
-            @RequestParam String text,
-            @RequestParam String cat,
-            @RequestParam String description,
-            @RequestParam String cost,
+            @Valid PurchaseObject purchaseObject,
+            BindingResult bindingResult,
             Model model)
     {
-        PurchaseObject purchase = new PurchaseObject(text, cat, description, cost, user);
+        purchaseObject.setAuthor(user);
 
+        if (bindingResult.hasErrors()) {
 
-        purchaseRepository.save(purchase);
+            Map<String, String> erorsMap = ControllerUtils.getErrors(bindingResult);
+            model.mergeAttributes(erorsMap);
+            model.addAttribute("purchaseObject", purchaseObject);
+
+        } else {
+            purchaseRepository.save(purchaseObject);
+        }
+
+        model.addAttribute("purchaseObject", null);
 
         Iterable<PurchaseObject> purchases = purchaseRepository.findAll();
         model.addAttribute("purchases", purchases);
 
         return "main";
     }
+
+
 
 }

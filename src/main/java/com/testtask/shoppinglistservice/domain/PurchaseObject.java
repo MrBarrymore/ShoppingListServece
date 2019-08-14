@@ -3,8 +3,10 @@ package com.testtask.shoppinglistservice.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.util.Calendar;
 
@@ -18,7 +20,11 @@ public class PurchaseObject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotBlank(message = "Please fill the name")
+    @Length(max = 255, message = "Name too long (more then 255)")
     private String name;
+    @NotBlank(message = "Please fill the category")
+    @Length(max = 255, message = "Name too long (more then 255)")
     private String category;
     private String description;
     private String cost;

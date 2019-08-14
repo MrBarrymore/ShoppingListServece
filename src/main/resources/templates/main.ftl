@@ -17,15 +17,29 @@
             <a class="btn btn-primary" data-toggle="collapse" href="#collapseAddPurchase" role="button" aria-expanded="false" aria-controls="collapseAddPurchase">
                 Добавить новую покупку
             </a>
-            <div class="collapse" id="collapseAddPurchase">
+            <div class="collapse <#if purchaseObject??>show</#if>" id="collapseAddPurchase">
                 <div class="form-group mt-3">
                     <form method="post" enctype="multipart/form-data">
+
                         <div class="form-group">
-                            <input type="text" class="form-control" name="text" placeholder="Введите название товара" />
+                            <input type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"
+                                   value="<#if purchaseObject??>${purchaseObject.name}</#if>" name="name" placeholder="Введите название товара" />
+                            <#if nameError??>
+                                <div class="invalid-feedback">
+                                    ${nameError}
+                                </div>
+                            </#if>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="cat" placeholder="Выберете категорию товара">
+                            <input type="text" class="form-control ${(categoryError??)?string('is-invalid', '')}"
+                                    name="cat" placeholder="Выберете категорию товара">
+                            <#if categoryError??>
+                                <div class="invalid-feedback">
+                                    ${categoryError}
+                                </div>
+                            </#if>
                         </div>
+
                         <div class="form-group">
                             <input type="description" class="form-control" name="description" placeholder="Опишите покупку">
                         </div>
@@ -37,6 +51,23 @@
                             <input type="text" class="form-control" name="date" placeholder="Дата покупки">
                         </div>
 
+                        <div class="well">
+                            <div id="datetimepicker3" class="input-append">
+                                <input data-format="hh:mm:ss" type="text"></input>
+                                <span class="add-on">
+                                  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                                  </i>
+                                </span>
+                            </div>
+                        </div>
+<#--                        <script type="text/javascript">-->
+<#--                            $(function() {-->
+<#--                                $('#datetimepicker3').datetimepicker({-->
+<#--                                    pickDate: false-->
+<#--                                });-->
+<#--                            });-->
+<#--                        </script>-->
+
                         <input type="hidden" name="_csrf" value="${_csrf.token}" />
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Добавить</button>
@@ -47,6 +78,7 @@
 
         </div>
 
+        <#--Таблица вывода списка покупок-->
         <link rel="stylesheet" type="text/css" href="/static/css/table.css">
 
         <h3>Список покупок:</h3>
