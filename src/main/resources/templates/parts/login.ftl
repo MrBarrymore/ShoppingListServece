@@ -28,9 +28,10 @@
                 </#if>
             </div>
         </div>
+
         <#if isRegisterForm>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Password:</label>
+                <label class="col-sm-2 col-form-label">Retype password:</label>
                 <div class="col-sm-6">
                     <input type="password" name="password2"
                            class="form-control ${(password2Error??)?string('is-invalid', '')}"
