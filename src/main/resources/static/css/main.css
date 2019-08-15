@@ -1,4 +1,10 @@
 
+html,
+body {
+    height: 100%;
+}
+
+
 .main {
     padding-top: 5px;
 }

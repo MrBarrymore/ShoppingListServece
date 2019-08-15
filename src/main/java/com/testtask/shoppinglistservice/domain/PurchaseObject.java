@@ -39,14 +39,12 @@ public class PurchaseObject {
         return author != null ? author.getUsername() : "none";
     }
 
-
     public PurchaseObject(String name, String category, User user) {
         this.author = user;
         this.name = name;
         this.category = category;
         this.purchaseDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
     }
-
 
     public PurchaseObject(String name, String category, String description, String cost,  User author) {
         this.name = name;
