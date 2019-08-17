@@ -59,4 +59,8 @@ public class Purchase {
     public void setIsBought(boolean param) {
         this.isBought = param;
     }
+
+    public boolean isBought() {
+        return isBought;
+    }
 }

@@ -51,7 +51,10 @@ public class UserController {
     }
 
     @GetMapping("profile")
-    public String getProfile(Model model, @AuthenticationPrincipal User user) {
+    public String getProfile(
+            Model model,
+            @AuthenticationPrincipal User user
+    ) {
         model.addAttribute("username", user.getUsername());
         model.addAttribute("email", user.getEmail());
 
@@ -62,8 +65,10 @@ public class UserController {
     public String updateProfile(
             @AuthenticationPrincipal User user,
             @RequestParam String password,
-            @RequestParam String email
+            @RequestParam String email,
+            Model model
     ) {
+
         userService.updateProfile(user, password, email);
 
         return "redirect:/user/profile";

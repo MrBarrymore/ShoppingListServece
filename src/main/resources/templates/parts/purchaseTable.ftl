@@ -58,8 +58,7 @@
                 <p class="purchase-author">${purchase.getAuthorName()}</p>
             </td>
             <td class="purchase-status" rowspan="1" scope="col">
-                <span><#if purchase.isBought?? > Куплено <#else>Не куплено</#if></span>
-
+                <span> <#if purchase.isBought()> Куплено <#else>Не куплено</#if></span>
             </td>
 
 
