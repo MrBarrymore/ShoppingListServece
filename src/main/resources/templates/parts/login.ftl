@@ -1,7 +1,6 @@
 <#macro login path isRegisterForm>
 
     <link rel="stylesheet" type="text/css" href="/static/css/login.css">
-<#--    <link href="floating-labels.css" rel="stylesheet">-->
 
     <form class="form-signin" action="${path}" method="post">
         <div class="text-center mb-4">

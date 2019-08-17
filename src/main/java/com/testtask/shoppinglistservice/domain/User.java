@@ -39,7 +39,7 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<PurchaseObject> purchases;
+    private Set<Purchase> purchases;
 
     @Override
     public boolean equals(Object o) {

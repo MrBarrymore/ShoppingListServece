@@ -15,7 +15,7 @@ import java.util.Calendar;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PurchaseObject {
+public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,14 +39,14 @@ public class PurchaseObject {
         return author != null ? author.getUsername() : "none";
     }
 
-    public PurchaseObject(String name, String category, User user) {
+    public Purchase(String name, String category, User user) {
         this.author = user;
         this.name = name;
         this.category = category;
         this.purchaseDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
     }
 
-    public PurchaseObject(String name, String category, String description, String cost,  User author) {
+    public Purchase(String name, String category, String description, String cost, User author) {
         this.name = name;
         this.category = category;
         this.description = description;
@@ -54,5 +54,9 @@ public class PurchaseObject {
         this.isBought = false;
         this.purchaseDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         this.author = author;
+    }
+
+    public void setIsBought(boolean param) {
+        this.isBought = param;
     }
 }

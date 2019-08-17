@@ -4,37 +4,33 @@
 <@c.page>
     <main class="main ml-4 mr-4">
 
-        <div class="form-row ml-2">
-            <div class="form-group col-md-6">
-            <form method="get" action="/main" class="form-inline">
-                <input type="text" name="filter" value="${filter?ifExists}" placeholder="Поиск по категории">
-                <button type="submit" class="btn btn-primary ml-2">Найти</button>
-            </form>
-            </div>
-        </div>
-
-
         <div class="container ml-2">
             <a class="btn btn-primary" data-toggle="collapse" href="#collapseAddPurchase" role="button" aria-expanded="false" aria-controls="collapseAddPurchase">
                 Добавить новую покупку
             </a>
-            <div class="collapse <#if purchaseObject??>show</#if>" id="collapseAddPurchase">
+            <div class="collapse<#if purchase??>-show</#if>" id="collapseAddPurchase">
                 <div class="form-group mt-3">
 
                     <form method="post" enctype="multipart/form-data">
 
                         <div class="form-group">
                             <input type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"
-                                   value="<#if purchaseObject??>${purchaseObject.name}</#if>" name="name" placeholder="Введите название товара" />
+                                   value="<#if purchase??>${purchase.name}</#if>"
+                                   name="name"
+                                   placeholder="Введите название товара" />
                             <#if nameError??>
                                 <div class="invalid-feedback">
                                     ${nameError}
                                 </div>
                             </#if>
                         </div>
+
                         <div class="form-group">
-                            <input type="text" class="form-control ${(categoryError??)?string('is-invalid', '')}"
-                                    name="cat" placeholder="Выберете категорию товара">
+                            <input type="text"
+                                   class="form-control ${(categoryError??)?string('is-invalid', '')}"
+                                   value="<#if purchase??>${purchase.category}</#if>"
+                                   name="category"
+                                   placeholder="Выберете категорию товара" />
                             <#if categoryError??>
                                 <div class="invalid-feedback">
                                     ${categoryError}
@@ -50,20 +46,12 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="text" class="form-control" name="date" placeholder="Дата покупки">
+                            <input type="date" name="purchaseDate">
                         </div>
 
-                        <div class="well">
-                            <div id="datetimepicker3" class="input-append">
-                                <input data-format="hh:mm:ss" type="text"></input>
-                                <span class="add-on">
-                                  <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-                                  </i>
-                                </span>
-                            </div>
-                        </div>
                         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                        <input type="hidden" name="id" value="<#if purchaseObject??> ${purchaseObject.id}</#if>" />
+                        <input type="hidden" name="id" value="<#if purchase??> ${purchase.id}</#if>" />
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Добавить</button>
                         </div>
@@ -74,8 +62,18 @@
 
         </div>
 
+        <div class="form-row ml-2">
+            <div class="form-group col-md-6 col-mt-6">
+                <form method="get" action="/main" class="form-inline">
+                    <input type="text" name="filter" value="${filter?ifExists}" placeholder="Поиск по категории">
+                    <button type="submit" class="btn btn-primary ml-2">Найти</button>
+                </form>
+            </div>
+        </div>
 
-<#include "parts/purchaseTable.ftl" />
+    <h4>Список ваших покупок:</h4>
+
+    <#include "parts/purchaseTable.ftl" />
 
 
     </main>

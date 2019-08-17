@@ -2,6 +2,6 @@
 
 <@c.page>
 
-    <h5>Hello, guest!</h5>
+    <h5>Hello, user!</h5>
 
 </@c.page>

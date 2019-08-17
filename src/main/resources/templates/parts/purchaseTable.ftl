@@ -1,7 +1,7 @@
+<#include "security.ftl">
+
 <#--Таблица вывода списка покупок-->
 <link rel="stylesheet" type="text/css" href="/static/css/table.css">
-
-<h3>Список покупок:</h3>
 
 <table class="table table-hover">
     <thead class="thead-dark">
@@ -58,12 +58,22 @@
                 <p class="purchase-author">${purchase.getAuthorName()}</p>
             </td>
             <td class="purchase-status" rowspan="1" scope="col">
-                <span>Не куплено</span>
+                <span><#if purchase.isBought?? > Куплено <#else>Не куплено</#if></span>
+
             </td>
+
+
             <td class="purchase-actions" rowspan="1" scope="col">
-                <button type="button" class="btn btn-secondary">Подтвердить покупку</button>
-                <button type="button" class="btn btn-secondary">Редактировать</button>
+                <div>
+                    <a class="btn btn-secondary"
+                       href="/confirm-purchase/${purchase.author.id}?purchase=${purchase.id}"> Отметить как купленную </a>
+                    <a class="btn btn-secondary"
+                       href="/user-purchase/${purchase.author.id}?purchase=${purchase.id}"> Редактировать покупку </a>
+                    <a class="btn btn-secondary"
+                       href="/delete-purchase/${purchase.author.id}?purchase=${purchase.id}"> Удалить покупку </a>
+                </div>
             </td>
+
         </tr>
         </tbody>
     <#else>
