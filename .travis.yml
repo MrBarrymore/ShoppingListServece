@@ -3,5 +3,5 @@ language: java
 before_install:
   - chmod +x mvnw
 
-    script:
-      mvn clean package
+script:
+  mvn clean package
