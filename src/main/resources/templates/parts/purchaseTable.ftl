@@ -21,7 +21,7 @@
                         <span class="info-body">${purchase.name}</span>
                 </p>
                 <p class="second-row" >
-                    <span class="info-subtitle"><i>${purchase.purchaseDate}</i></span>
+                    <span class="info-subtitle"><i>Дата покупки: ${purchase.purchaseDate}</i></span>
                 </p>
             </td>
             <td class="extra-purchase-info" colspan="1" scope="col">
@@ -56,7 +56,7 @@
 
             <td class="purchase-action" rowspan="1" scope="col">
                 <p class="purchase-description">${purchase.description}</p>
-                <p class="purchase-author">${purchase.getAuthorName()}</p>
+<#--                <p class="purchase-author">${purchase.getAuthorName()}</p>-->
             </td>
             <td class="purchase-status" rowspan="1" scope="col">
                 <span> <#if purchase.isBought()> Куплено <#else>Не куплено</#if></span>

@@ -62,8 +62,8 @@ public class UserService implements UserDetailsService {
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
-//                            "Welcome to Shopping list service. Please, visit next link: http://localhost:8080/activate/%s",
-                    "Welcome to Shopping list service. Please, visit next link: http://shoppinglistservice.herokuapp.com/activate/%s",
+                            "Welcome to Shopping list service. Please, visit next link: http://localhost:8080/activate/%s",
+//                    "Welcome to Shopping list service. Please, visit next link: http://shoppinglistservice.herokuapp.com/activate/%s",
                     user.getUsername(),
                     user.getActivationCode()
             );
@@ -122,7 +122,7 @@ public class UserService implements UserDetailsService {
         }
 
         if (!StringUtils.isEmpty(password)) {
-            user.setPassword(password);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
 
         userRepository.save(user);
