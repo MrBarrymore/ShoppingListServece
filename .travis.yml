@@ -3,8 +3,6 @@ language: java
 before_install:
   - chmod +x mvnw
 
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/shoppinglistservice-0.0.1-SNAPSHOT.jar
-
 script:
   mvn clean package
 
