@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SoppingListService</title>
+    <title>ShoppingListService</title>
     <#--  CSS   -->
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <!-- Bootstrap CSS -->
