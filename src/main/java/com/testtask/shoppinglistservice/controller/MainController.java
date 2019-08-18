@@ -3,6 +3,7 @@ package com.testtask.shoppinglistservice.controller;
 import com.testtask.shoppinglistservice.domain.Purchase;
 import com.testtask.shoppinglistservice.domain.User;
 import com.testtask.shoppinglistservice.repositories.PurchaseRepository;
+import com.testtask.shoppinglistservice.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class MainController {
     @Autowired
     private PurchaseRepository purchaseRepository;
 
+    @Autowired
+    private PurchaseService purchaseService;
+
     @GetMapping("/")
     public String greeting(
     ) {
@@ -29,25 +33,19 @@ public class MainController {
     public String GetList(
             @AuthenticationPrincipal User currentUser,
             @RequestParam(required = false, defaultValue = "") String filter,
+            @RequestParam(required = false) boolean relevant,
             Model model
             ) {
 
-        Iterable<Purchase> purchases;
+        List<Purchase> purchases = purchaseRepository.findByAuthor(currentUser);
 
-        if (currentUser != null) {
-
-            purchases = purchaseRepository.findByAuthor(currentUser);
-
-//            if (filter != null && !filter.isEmpty()) {
-//                purchases = purchaseRepository.findByCategory(filter);
-//            } else {
-//                purchases = purchaseRepository.findAll();
-//            }
-
+        if (filter != null && !filter.isEmpty()) {
+            purchases = purchaseService.filterPurchases(purchases, filter);
         }
-        else {
-            purchases = purchaseRepository.findAll();
+        if (relevant) {
+            purchases =  purchaseService.filterPurchases(purchases, relevant);
         }
+
         model.addAttribute("purchases", purchases);
         model.addAttribute("filter", filter);
 
@@ -64,17 +62,16 @@ public class MainController {
     ) {
 
         if (purchase.getAuthor().equals(currentUser)) {
-
             purchase.setIsBought(true);
             purchaseRepository.save(purchase);
-
             List<Purchase> purchases = purchaseRepository.findByAuthor(currentUser);
-
             model.addAttribute("purchases", purchases);
         }
 
         return "main";
     }
+
+
 
 
 }

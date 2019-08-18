@@ -47,7 +47,7 @@
 
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
         <div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit"> Сохранить </button>
+            <button class="btn-primary btn-block" type="submit"> Сохранить </button>
         </div>
 
     </form>

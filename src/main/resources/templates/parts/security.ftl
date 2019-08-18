@@ -1,6 +1,6 @@
 
 <#assign
-    known = Session.SPRING_SECURITY_CONTEXT??
+known = Session.SPRING_SECURITY_CONTEXT??
 >
 
 <#if known>
@@ -12,8 +12,8 @@
     >
 <#else>
     <#assign
-        name = "unknown"
-        isAdmin = false
-        currentUserId = -1
+    name = "unknown"
+    isAdmin = false
+    currentUserId = -1
     >
 </#if>

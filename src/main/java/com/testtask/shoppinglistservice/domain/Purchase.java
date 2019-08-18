@@ -10,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.util.Calendar;
 
-
 @Entity
 @Getter
 @Setter
@@ -62,5 +61,9 @@ public class Purchase {
 
     public boolean isBought() {
         return isBought;
+    }
+
+    public Date getPurchaseDate() {
+        return purchaseDate;
     }
 }

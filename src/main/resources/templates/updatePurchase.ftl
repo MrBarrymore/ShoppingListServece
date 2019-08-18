@@ -46,8 +46,14 @@
 
     <div class="form-group">
         <input type="date"
-               value="<#if purchase??>${purchase.purchaseDate}</#if>"
-               name="purchaseDate">
+<#--              value="${purchase.category}"-->
+              value="2019-08-27"
+              name="purchaseDate">
+        <#if purchaseDateError??>
+            <div class="invalid-feedback">
+                ${purchaseDateError}
+            </div>
+        </#if>
     </div>
 
     <input type="hidden" name="_csrf" value="${_csrf.token}" />

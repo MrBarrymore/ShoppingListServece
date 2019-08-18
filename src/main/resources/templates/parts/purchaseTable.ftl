@@ -17,7 +17,8 @@
         <tr class="order-head">
             <td class="purchase-info" colspan="2" scope="col">
                 <p class="first-row">
-                    <span class="info-subtitle">Id покупки:</span> <span class="info-body">${purchase.id}</span>
+                    <span class="info-subtitle">Название покупки:</span>
+                        <span class="info-body">${purchase.name}</span>
                 </p>
                 <p class="second-row" >
                     <span class="info-subtitle"><i>${purchase.purchaseDate}</i></span>
@@ -63,12 +64,12 @@
 
 
             <td class="purchase-actions" rowspan="1" scope="col">
-                <div>
+                <div class="d-flex flex-column">
                     <a class="btn btn-secondary"
                        href="/confirm-purchase/${purchase.author.id}?purchase=${purchase.id}"> Отметить как купленную </a>
-                    <a class="btn btn-secondary"
+                    <a class="btn btn-secondary mt-2"
                        href="/user-purchase/${purchase.author.id}?purchase=${purchase.id}"> Редактировать покупку </a>
-                    <a class="btn btn-secondary"
+                    <a class="btn btn-secondary mt-2"
                        href="/delete-purchase/${purchase.author.id}?purchase=${purchase.id}"> Удалить покупку </a>
                 </div>
             </td>
