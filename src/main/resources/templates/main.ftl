@@ -2,39 +2,39 @@
 <#import "parts/login.ftl" as l>
 
 <@c.page>
+<#--    <script src="/js/main.js"></script>-->
     <main class="main ml-4 mr-4">
 
-            <div class="d-flex flex-column bd-highlight mb-3">
-                <div class="p-2 border-secondary">
-                     <label><h4>Фильтр списка покупок</h4></label>
+            <div class="d-flex flex-column border-secondary mb-3">
+                <div class="p-2 border-secondary col-md-3 ">
+                     <label><h5>Фильтр списка покупок</h5></label>
                 </div>
                 <div class="p-2 border-secondary">
-                    <div class="form-group col-md-6 col-mt-6">
-                        <form method="get" action="/main" class="form-inline">
-                            <input type="text" name="filter" value="${filter?ifExists}" placeholder="Поиск по категории">
-                            <button type="submit" class="btn btn-primary ml-2">Найти</button>
+                    <div class="form-group col-md-3 col-mt-3">
+                        <form method="get" action="/main" class="form-column">
+                            <div class="d-flex flex-column">
+                                <label>Фильтрация по категории покупки: </label>
+                                <input type="text" name="filter" value="${filter?ifExists}" placeholder="Поиск по категории">
+                                <button type="submit" class="btn btn-primary mt-2">Найти</button>
+                            </div>
                         </form>
-                    </div>
-                </div>
-                <div class="p-2 bd-dark">
-                    <div class="form-group col-md-6 col-mt-6">
-                        <form method="get" action="/main" class="form-inline">
+                        <form method="get" action="/main" class="form-column mt-3">
                             <input type="hidden" name="relevant" name="" value=true>
-                            <button type="submit" class="btn btn-primary ml-2">Актуальные покупки</button>
+                            <button type="submit" class="btn btn-primary">Актуальные покупки</button>
                         </form>
                     </div>
                 </div>
+
             </div>
 
-        <div class="container ml-2">
-            <a class="btn btn-primary" data-toggle="collapse" href="#collapseAddPurchase" role="button" aria-expanded="false" aria-controls="collapseAddPurchase">
+        <div class="container">
+            <a class="btn btn-primary col-md-3" data-toggle="collapse" href="#collapseAddPurchase" role="button" aria-expanded="false" aria-controls="collapseAddPurchase">
                 Добавить новую покупку
             </a>
             <div class="collapse<#if purchase??>-show</#if>" id="collapseAddPurchase">
                 <div class="form-group mt-3">
 
                     <form method="post" enctype="multipart/form-data">
-
                         <div class="form-group">
                             <input type="text" class="form-control ${(nameError??)?string('is-invalid', '')}"
                                    value="<#if purchase??>${purchase.name}</#if>"
@@ -62,14 +62,32 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="description" class="form-control" name="description" placeholder="Опишите покупку">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="cost" placeholder="Стоимость">
+                            <input type="description"
+                                   class="form-control"
+                                   name="description"
+                                   value="<#if purchase??>${purchase.description}</#if>"
+                                   placeholder="Опишите покупку">
                         </div>
 
                         <div class="form-group">
-                            <input type="date" name="purchaseDate">
+                            <input type="text"
+                                   class="form-control"
+                                   name="cost"
+                                   value="<#if purchase??>${purchase.cost}</#if>"
+                                   placeholder="Стоимость">
+                            <#if costError??>
+                                <div class="invalid-feedback">
+                                    ${costError}
+                                </div>
+                            </#if>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="date"
+                                   id="today"
+                                   name="purchaseDate"
+                                   value="<#if purchase??>${purchase.purchaseDate}<#else>2019-08-20</#if>"
+                                    />
                         </div>
 
                         <input type="hidden" name="_csrf" value="${_csrf.token}" />
@@ -86,7 +104,6 @@
         </div>
 
     <h4>Список ваших покупок:</h4>
-
     <#include "parts/purchaseTable.ftl" />
 
 

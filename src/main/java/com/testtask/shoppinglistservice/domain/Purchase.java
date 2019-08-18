@@ -17,7 +17,7 @@ import java.util.Calendar;
 public class Purchase {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     @NotBlank(message = "Please fill the name")
     @Length(max = 255, message = "Name too long (more then 255)")

@@ -46,6 +46,7 @@ public class MainController {
             purchases =  purchaseService.filterPurchases(purchases, relevant);
         }
 
+
         model.addAttribute("purchases", purchases);
         model.addAttribute("filter", filter);
 

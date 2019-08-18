@@ -60,16 +60,21 @@ public class PurchaseService {
         if (bindingResult.hasErrors()) {
             Map<String, String> erorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(erorsMap);
+            if (purchase.getId() == null) purchase.setId(300L);
             model.addAttribute("purchase", purchase);
 
-        } else {
+        }  else {
+
             if (purchase.getPurchaseDate() == null )  {
                 purchase.setPurchaseDate(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
             }
+            model.addAttribute("purchase", null);
+
             purchaseRepository.save(purchase);
+
         }
 
-        model.addAttribute("purchase", null);
+
         Iterable<Purchase> purchases = purchaseRepository.findByAuthor(currentUser);
         model.addAttribute("purchases", purchases);
 

@@ -35,9 +35,9 @@
             <td class="" scope="col">
                 <p class="first-row" colspan="1">
                     <span class="info-subtitle">Стоимость:</span>
+                    <span class="info-subtitle">${purchase.cost}</span>
                 </p>
                 <p class="second-row">
-                    <span class="info-subtitle">${purchase.cost}</span>
                 </p>
             </td>
         </tr>
@@ -62,8 +62,7 @@
                 <span> <#if purchase.isBought()> Куплено <#else>Не куплено</#if></span>
             </td>
 
-
-            <td class="purchase-actions" rowspan="1" scope="col">
+            <td class="purchase-actions " rowspan="1" scope="col ">
                 <div class="d-flex flex-column">
                     <a class="btn btn-secondary"
                        href="/confirm-purchase/${purchase.author.id}?purchase=${purchase.id}"> Отметить как купленную </a>
