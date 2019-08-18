@@ -45,7 +45,7 @@ public class Purchase {
         this.purchaseDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
     }
 
-    public Purchase(String name, String category, String description, String cost, User author) {
+    public Purchase(String name, String category, String description, String cost, User author, Date date) {
         this.name = name;
         this.category = category;
         this.description = description;

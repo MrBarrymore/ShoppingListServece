@@ -73,7 +73,6 @@ public class PurchaseRedactorController {
         return "updatePurchase";
     }
 
-
     @GetMapping("/delete-purchase/{user}")
     public String deletePurchase(
             @AuthenticationPrincipal User currentUser,

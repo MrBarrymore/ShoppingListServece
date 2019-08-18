@@ -60,7 +60,6 @@ public class MainController {
             @RequestParam Purchase purchase,
             Model model
     ) {
-
         if (purchase.getAuthor().equals(currentUser)) {
             purchase.setIsBought(true);
             purchaseRepository.save(purchase);

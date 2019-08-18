@@ -1,6 +1,5 @@
 package com.testtask.shoppinglistservice.service;
 
-
 import com.testtask.shoppinglistservice.domain.Role;
 import com.testtask.shoppinglistservice.domain.User;
 import com.testtask.shoppinglistservice.repositories.UserRepository;
@@ -18,10 +17,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Collections;
 
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserServiceTest {
-
     @Autowired
     private UserService userService;
 
@@ -102,4 +101,5 @@ public class UserServiceTest {
 
         Mockito.verify(userRepository, Mockito.times(0)).save(ArgumentMatchers.any(User.class));
     }
+
 }

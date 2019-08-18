@@ -24,11 +24,15 @@ public class PurchaseService {
     @Autowired
     PurchaseRepository purchaseRepository;
 
+    public PurchaseService(PurchaseRepository purchaseRepository) {
+        this.purchaseRepository = purchaseRepository;
+    }
+
     public List<Purchase> filterPurchases(Iterable<Purchase> purchases, String filter) {
 
         List<Purchase> newPurchases = new LinkedList<>();
         for (Purchase purchase : purchases) {
-            if (purchase.getCategory() == filter)
+            if (purchase.getCategory().equals(filter))
                 newPurchases.add(purchase);
         }
         return newPurchases;
@@ -45,7 +49,6 @@ public class PurchaseService {
 
         return newPurchases;
     }
-
 
     public Model addPurchase(
             User currentUser,
