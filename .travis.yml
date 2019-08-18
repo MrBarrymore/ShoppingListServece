@@ -3,12 +3,14 @@ language: java
 before_install:
   - chmod +x mvnw
 
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/shoppinglistservice-0.0.1-SNAPSHOT.jar
+
 script:
   mvn clean package
 
-  deploy:
+deploy:
     provider: heroku
-    app: createrofsocialgraph
+    app: shoppinglistservice
     api_key:
       secure: Qwq8LDmpVXPHZj9pwPNGzhHhomUpeqNmETmsF4+oJr+au25rJSJPnk8JCOP2zSsoHGQ1zSXtdx0UaMGiZKsVUC4omSXUb8aIBez/syC99E25vwB6noFydtp2dnxjyazPTjO4jSbMazehPaKRAiUoF9NDArEQCrNKuJ4eQAZN4tqUlKm9uI0n+6RREIpy88QXzDRen9nRMJJ6c8NMrS6jq16NwMSUY74V1azTx1+offYK4kIu7iGZfT1pNyD8m8ASPPPTr3p+mUkrVEKjH93A0I82Dx0yOAALp91GmH/2lfZ/m7k2qqe4ksUOP849tLP8Fbx1DvGETo0DUwJHodctnCj6dXlYI1o9CwPk9eDwNGJQOniCgTvm1PHPn6n9eJXbpc5E3dUda80YWvynuvVtwrkJ+GQ1nNcadOHrSoXhBFgoiVRkadlwnRyPKD0kPQK2Wpl2N8d5ig0wCYq8AlBq/JNDENzL/WnnErXXoMJOvOtZMUcGZRyxZ5kuf7zZs7AGFCd7Y490e2C5s5dRAJMO4ptMLlvUj3LlKCvClKuLzw88kVYltZB6PK3PaAeKQIPluBndUS15LmNKLiRjG/ltMiSBBK8Tr2WjLGkNVFcSdDxbndJDE/R84tchRsz7tmnV3uXAd//VtsPa8h1uPdKz27hQPGpYGjISuDPQV3T1Xfk=
     run:
